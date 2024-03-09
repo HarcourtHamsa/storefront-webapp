@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rubik_80s_Fade, Agbalumo, Rubik, Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
+import { ReactQueryConfig } from "@/config/react-query";
+import { StoreProvider } from "@/components/store-provider/store-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Agbalumo({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +17,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ReactQueryConfig>
+            {children}
+          </ReactQueryConfig>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
